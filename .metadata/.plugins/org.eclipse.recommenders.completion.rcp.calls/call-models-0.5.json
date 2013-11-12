@@ -1,1 +1,12 @@
-{}
+{
+  "D:\\Dev\\M2\\AOC\\MMetronome\\trunk\\AOCTP1\\v1": {
+    "location": "D:\\Dev\\M2\\AOC\\MMetronome\\trunk\\AOCTP1\\v1",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027D:\\Dev\\M2\\AOC\\MMetronome\\trunk\\AOCTP1\\v1\u0027. Skipped."
+  },
+  "C:\\Program Files\\Java\\jre7\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "C:\\Program Files\\Java\\jre7\\lib\\rt.jar",
+    "status": "RESOLVED"
+  }
+}
