@@ -1,0 +1,24 @@
+!SESSION 2013-11-12 16:24:49.948 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_40
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.dsl.product -keyring /Users/Florian/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.dsl.product -keyring /Users/Florian/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-11-12 16:30:29.638
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.instantiations.common.core 2 0 2013-11-12 16:31:28.235
+!MESSAGE This version of CodePro Analytix and PlusPak was compiled for Eclipse 3.7 but is running on Eclipse 3.8.
+This version of EclipsePro Audit was compiled for Eclipse 3.7 but is running on Eclipse 3.8.
+This version of RCP Developer was compiled for Eclipse 3.6 but is running on Eclipse 3.8.
+This version of WindowTester SWT was compiled for Eclipse 3.6 but is running on Eclipse 3.8.
+This version of WindowTester Swing was compiled for Eclipse 3.6 but is running on Eclipse 3.8.
+This version of WindowTester Pro was compiled for Eclipse 3.6 but is running on Eclipse 3.8.
+This version of WindowTester Runner was compiled for Eclipse 3.6 but is running on Eclipse 3.8.
+This version of WindowTester SWT Runner was compiled for Eclipse 3.6 but is running on Eclipse 3.8.
+This version of WindowTester Swing Runner was compiled for Eclipse 3.6 but is running on Eclipse 3.8.
+This version of Code Coverage was compiled for Eclipse 3.7 but is running on Eclipse 3.8.
+This version of Shared was compiled for Eclipse 3.7 but is running on Eclipse 3.8.
+
