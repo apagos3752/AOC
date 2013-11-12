@@ -1,0 +1,43 @@
+package model;
+
+import controller.Command;
+
+public class MoteurMetronomeImpl implements MoteurMetronome {
+
+	@Override
+	public float getTempo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getTempoParMesure() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setTempo(float tempo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setGestionTempsMesure() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEtatMarche(boolean bool) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setCommand(Command cmd, String commandName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

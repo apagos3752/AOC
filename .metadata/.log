@@ -22,3 +22,16 @@ This version of WindowTester Swing Runner was compiled for Eclipse 3.6 but is ru
 This version of Code Coverage was compiled for Eclipse 3.7 but is running on Eclipse 3.8.
 This version of Shared was compiled for Eclipse 3.7 but is running on Eclipse 3.8.
 
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2013-11-12 16:49:52.209
+!MESSAGE Failed to open search index.
+!SESSION 2013-11-12 16:53:30.077 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_40
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.dsl.product -keyring /Users/Florian/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.dsl.product -keyring /Users/Florian/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-11-12 16:53:54.500
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

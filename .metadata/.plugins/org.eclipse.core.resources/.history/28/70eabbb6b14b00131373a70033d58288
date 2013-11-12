@@ -1,0 +1,14 @@
+package model;
+
+import controller.Command;
+
+public interface MoteurMetronome {
+
+	public float getTempo();
+	public int getTempoParMesure();
+	public boolean setTempo(float tempo);
+	public boolean setGestionTempsMesure();
+	public boolean setEtatMarche(boolean bool);
+	public void setCommand(Command cmd, String commandName);
+	
+}
