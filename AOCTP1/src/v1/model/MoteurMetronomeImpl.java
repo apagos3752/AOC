@@ -1,15 +1,25 @@
 package model;
 
-import controller.Command;
+import java.util.Hashtable;
+import java.util.Observable;
 
-public class MoteurMetronomeImpl implements MoteurMetronome {
+import utils.Horloge;
+import controller.Commande;
+
+public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 	private double tempo;
 	private int mesure;
+	private int tempoLaps;
 	private boolean etat;
+	private Horloge horloge;
+	private Commande commandeMarquerMesure;
+	private Commande commandeMarquerTemps;
+	private Commande commandeTicTac;
 	
 	public MoteurMetronomeImpl(){
-		this.tempo = 100.0;
+		this.tempo = 60.0;
 		this.mesure = 4;
+		this.tempoLaps = 0;
 		this.etat = false;
 	}
 	
@@ -29,19 +39,45 @@ public class MoteurMetronomeImpl implements MoteurMetronome {
 	}
 
 	@Override
-	public void setGestionTempsMesure() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void setEtatMarche(boolean etat) {
+		if(etat){
+			double top = 60/tempo;
+			horloge.activerPeriodiquement(commandeTicTac, top);	
+		}
+		else{
+			//horloge.desactiverCommande(commandeTicTac);
+		}
+
 		this.etat = etat;
 	}
 
 	@Override
-	public void setCommand(Command cmd, String commandName) {
-		
+	public void setCommandeMarquerMesure(Commande cmd){
+		commandeMarquerMesure = cmd;
 	}
+	
+	@Override
+	public void setCommandeMarquerTemps(Commande cmd){
+		commandeMarquerTemps = cmd;
+	}
+	
+	@Override
+	public void setCommandeTicTac(Commande cmd){
+		commandeTicTac = cmd;
+	}
+	
+	public void setHorloge(Horloge h){
+		horloge = h;
+	}
+	
+	public void tictac(){
+		commandeMarquerTemps.execute();
+		tempoLaps++;
+		
+		if(tempoLaps == mesure){
+			commandeMarquerMesure.execute();
+			tempoLaps = 0;
+		}
+	}	
 
 }

@@ -127,11 +127,4 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 
 	}
 
-	public static void main(String[] args) {
-		
-		MoteurMetronomeViewImpl mmvi = new MoteurMetronomeViewImpl();
-		mmvi.setVisible(true);
-
-	}
-
 }
