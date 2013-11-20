@@ -2,12 +2,15 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.*;
 
 public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeView {
 
+	Integer INITMESURE = new Integer(4);
+	String MESUREPREFIX = "1|";
 	JButton inc;
 	JButton dec;
 	JButton start;
@@ -15,6 +18,8 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 	JSlider molette;
 	JPanel tempo;
 	JPanel mesure;
+	JLabel mesureTxt;
+	Font mesureTxtFont;
 	
 	public MoteurMetronomeViewImpl(){
 		
@@ -24,7 +29,7 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 	
 	public void setUp(){
 		
-		this.setSize(400, 300);
+		this.setSize(350, 240);
 		this.setPreferredSize(getSize());
 		
 		//Initialisation des objets		
@@ -32,8 +37,19 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		dec = new JButton("dec");
 		start = new JButton("start");
 		stop = new JButton("stop");
-		molette = new JSlider(0, 1, 0);
-		
+		molette = new JSlider(0, 1000, 0);
+		tempo = new JPanel();
+		tempo.setSize(100, 100);
+		tempo.setPreferredSize(tempo.getSize());
+		mesure = new JPanel();
+		mesure.setSize(100, 100);
+		mesure.setPreferredSize(mesure.getSize());
+		mesureTxt = new JLabel("1|"+this.INITMESURE.toString());
+		mesureTxt.setSize(100,100);
+		mesureTxt.setPreferredSize(mesureTxt.getSize());
+		mesureTxtFont = new Font("", 1, 60);
+		mesureTxt.setFont(mesureTxtFont);
+		mesureTxt.setHorizontalAlignment(SwingConstants.CENTER);
 		//Mise en place du Layout
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
@@ -60,7 +76,19 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		southPanel.add(southPanelBot, BorderLayout.SOUTH);
 		southPanel.add(southPanelTop, BorderLayout.NORTH);
 		
+		JPanel northPanel = new JPanel();
+		
+		northPanel.setLayout(new BorderLayout());
+		
+		tempo.setBackground(Color.decode("#c0362c"));
+		mesure.setBackground(Color.decode("#c0362c"));
+		
+		northPanel.add(tempo,BorderLayout.WEST);
+		northPanel.add(mesure,BorderLayout.EAST);
+		northPanel.add(mesureTxt,BorderLayout.CENTER);
+		
 		this.add(southPanel,BorderLayout.SOUTH);
+		this.add(northPanel,BorderLayout.NORTH);
 	}
 	
 	@Override
