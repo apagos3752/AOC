@@ -21,6 +21,8 @@ public interface MoteurMetronomeView{
 	
 	public void LEDOff(int ledNumber);
 	
+	public void LEDOn(int ledNumber);
+	
 	public void flashLED(int ledNumber);
 	
 	public void setText(String txt);

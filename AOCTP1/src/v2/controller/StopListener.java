@@ -3,22 +3,23 @@ package controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import view.Clavier;
+
 
 
 public class StopListener implements MouseListener{
 
 
-	MoteurMetronomeControllerImpl controller;
+	private Clavier clavier;
 	
-	public StopListener(MoteurMetronomeControllerImpl ctrl){
+	public StopListener(Clavier clavier){
 		
-		this.controller = ctrl;
+		this.clavier = clavier;
 		
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		controller.stop();
 	}
 
 	@Override
@@ -35,14 +36,12 @@ public class StopListener implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		clavier.setTrue(3);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		clavier.setFalse(3);
 	}
 
 }

@@ -75,6 +75,14 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		led.setBackground(this.LED_OFF);
 		
 	}
+
+	public void LEDOn(int ledNumber){
+		
+		JPanel led = ledList.get(ledNumber);
+		led.setBackground(this.LED_ON);
+		
+	}
+	
 	
 	public void setUp(){
 		

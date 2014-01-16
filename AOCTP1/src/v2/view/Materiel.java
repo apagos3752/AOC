@@ -4,12 +4,12 @@ import utils.Horloge;
 
 public class Materiel {
 	
-	private Horloge h;
-	private Clavier clavier;
-	private Molette molette;
-	private EmetteurSonore emetteur;
-	private Afficheur afficher;
-	private MoteurMetronomeView mmv;
+	private static Horloge h;
+	private static Clavier clavier;
+	private static Molette molette;
+	private static EmetteurSonore emetteur;
+	private static Afficheur afficheur;
+	private static MoteurMetronomeView mmv;
 	
 	public Materiel(Horloge h){
 		
@@ -18,13 +18,13 @@ public class Materiel {
 		this.clavier = new ClavierImpl();
 		this.molette = new MoletteImpl(mmv);
 		this.emetteur = new EmetteurSonoreImpl(mmv);
-		this.afficher = new AfficheurImpl(mmv);
+		this.afficheur = new AfficheurImpl(mmv);
 		
 	}
 	
-	static Horloge getHorloge();
-	static Clavier getClavier();
-	static Molette getMolette();
-	static EmetteurSonore getEmetteurSonore();
-	static Afficheur getAfficheur();
+	static Horloge getHorloge(){return h;};
+	static Clavier getClavier(){return clavier;};
+	static Molette getMolette(){return molette;};
+	static EmetteurSonore getEmetteurSonore(){return emetteur;};
+	static Afficheur getAfficheur(){return afficheur;};
 }
