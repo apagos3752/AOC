@@ -1,12 +1,14 @@
 package controller;
 
+import adapteur.IAdapteur;
 import view.MoteurMetronomeView;
 
 public class CommandeEteindreLED implements Commande {
 
 	int ledNumber;	
-	MoteurMetronomeView mmv;
-	public CommandeEteindreLED (int ledNumber,MoteurMetronomeView mmv){
+	IAdapteur mmv;
+	
+	public CommandeEteindreLED (int ledNumber, IAdapteur mmv){
 		
 		this.mmv = mmv;
 		this.ledNumber = ledNumber;
@@ -16,7 +18,7 @@ public class CommandeEteindreLED implements Commande {
 	@Override
 	public void execute() {
 		
-		mmv.LEDOff(ledNumber);
+		mmv.ledOFF(ledNumber);
 		
 	}
 

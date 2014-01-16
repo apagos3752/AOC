@@ -2,7 +2,7 @@ package view;
 
 public interface Clavier {
 
-	Boolean touchePressée(int i);
+	Boolean touchePressee(int i);
 
 	void setTrue(int i);
 	

@@ -14,7 +14,7 @@ public class AfficheurImpl implements Afficheur {
 	}
 
 	@Override
-	public void éteindreLED(int numLED) {
+	public void eteindreLED(int numLED) {
 		mmv.LEDOff(numLED);
 	}
 

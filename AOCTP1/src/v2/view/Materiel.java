@@ -22,9 +22,9 @@ public class Materiel {
 		
 	}
 	
-	static Horloge getHorloge(){return h;};
-	static Clavier getClavier(){return clavier;};
-	static Molette getMolette(){return molette;};
-	static EmetteurSonore getEmetteurSonore(){return emetteur;};
-	static Afficheur getAfficheur(){return afficheur;};
+	public static Horloge getHorloge(){return h;};
+	public static Clavier getClavier(){return clavier;};
+	public static Molette getMolette(){return molette;};
+	public static EmetteurSonore getEmetteurSonore(){return emetteur;};
+	public static Afficheur getAfficheur(){return afficheur;};
 }
