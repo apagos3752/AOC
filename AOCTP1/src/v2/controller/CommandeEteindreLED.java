@@ -11,6 +11,8 @@ public class CommandeEteindreLED implements Commande {
 	public CommandeEteindreLED (int ledNumber, IAdapteur mmv){
 		
 		this.mmv = mmv;
+		
+		
 		this.ledNumber = ledNumber;
 		
 	}
