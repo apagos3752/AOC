@@ -4,13 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
 
 public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeView {
 
 	Integer INITMESURE = new Integer(4);
+	Color LED_ON = Color.decode("#ff0000");
+	Color LED_OFF = Color.decode("#a90b0b");
 	String MESUREPREFIX = "1|";
+	int ACCURACY = 1000;
+	
 	JButton inc;
 	JButton dec;
 	JButton start;
@@ -20,11 +28,37 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 	JPanel mesure;
 	JLabel mesureTxt;
 	Font mesureTxtFont;
+	ArrayList<JPanel> ledList;
 	
 	public MoteurMetronomeViewImpl(){
 		
 		this.setUp();
 		
+	}
+	
+	public void setMoletteListener(MouseListener ml){
+		molette.addMouseListener(ml);
+	}
+	
+	public void setIncListener(MouseListener ml){
+		inc.addMouseListener(ml);
+	}
+	
+	public void setDecListener(MouseListener ml){
+		dec.addMouseListener(ml);
+	}
+	
+	public void setStartListener(MouseListener ml){
+		start.addMouseListener(ml);
+	}
+	
+	public void setStopListener(MouseListener ml){
+		stop.addMouseListener(ml);
+	}
+	
+	public void flasherLED(int ledNumber){
+		JPanel led = ledList.get(ledNumber);
+		led.setBackground(this.LED_ON);
 	}
 	
 	public void setUp(){
@@ -37,7 +71,7 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		dec = new JButton("dec");
 		start = new JButton("start");
 		stop = new JButton("stop");
-		molette = new JSlider(0, 1000, 0);
+		molette = new JSlider(0, this.ACCURACY, 0);
 		tempo = new JPanel();
 		tempo.setSize(100, 100);
 		tempo.setPreferredSize(tempo.getSize());
@@ -50,6 +84,9 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		mesureTxtFont = new Font("", 1, 60);
 		mesureTxt.setFont(mesureTxtFont);
 		mesureTxt.setHorizontalAlignment(SwingConstants.CENTER);
+		ledList = new ArrayList<JPanel>();
+		ledList.add(mesure);
+		ledList.add(tempo);
 		//Mise en place du Layout
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
@@ -80,11 +117,11 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		
 		northPanel.setLayout(new BorderLayout());
 		
-		tempo.setBackground(Color.decode("#c0362c"));
-		mesure.setBackground(Color.decode("#c0362c"));
+		tempo.setBackground(this.LED_OFF);
+		mesure.setBackground(this.LED_OFF);
 		
-		northPanel.add(tempo,BorderLayout.WEST);
-		northPanel.add(mesure,BorderLayout.EAST);
+		northPanel.add(tempo,BorderLayout.EAST);
+		northPanel.add(mesure,BorderLayout.WEST);
 		northPanel.add(mesureTxt,BorderLayout.CENTER);
 		
 		this.add(southPanel,BorderLayout.SOUTH);
@@ -125,6 +162,10 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 	public void setDecListener() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public float getTempo() {
+		return molette.getValue()/this.ACCURACY;
 	}
 
 }

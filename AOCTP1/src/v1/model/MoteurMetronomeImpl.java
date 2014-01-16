@@ -35,7 +35,7 @@ public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 
 	@Override
 	public void setTempo(float tempo) {
-		this.tempo = tempo;
+		if (tempo>0) this.tempo = tempo;
 	}
 
 	@Override
@@ -79,5 +79,34 @@ public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 			tempoLaps = 0;
 		}
 	}	
+
+	@Override
+	public void setListeners() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void marquerTemps() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void marquerMesure() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getMesure() {
+		// TODO Auto-generated method stub
+		return mesure;
+	}
+
+	@Override
+	public void setMesure(int mesure) {
+		if (mesure>0) this.mesure = mesure;		
+	}
 
 }
