@@ -40,6 +40,7 @@ public class MoteurMetronomeControllerImpl implements MoteurMetronomeController 
 	@Override
 	public void marquerTemps() {
 		mmv.flashLED(1);
+		mmv.clic();
 	}
 
 	@Override
