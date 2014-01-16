@@ -4,19 +4,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import view.Clavier;
+import view.Materiel;
 
 
 
 public class StopListener implements MouseListener{
 
-
-	private Clavier clavier;
-	
-	public StopListener(Clavier clavier){
-		
-		this.clavier = clavier;
-		
-	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -36,12 +29,12 @@ public class StopListener implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		clavier.setTrue(3);
+		Materiel.getClavier().setTrue(3);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		clavier.setFalse(3);
+		Materiel.getClavier().setFalse(3);
 	}
 
 }

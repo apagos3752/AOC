@@ -5,22 +5,15 @@ import java.awt.event.MouseListener;
 
 import view.Afficheur;
 import view.Clavier;
+import view.Materiel;
 import model.MoteurMetronomeImpl;
 
 public class DecListener implements MouseListener{
 
-
-	private Clavier clavier;
-	
-	public DecListener(Clavier clavier){
-		
-		this.clavier = clavier;
-		
-	}
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		clavier.setTrue(1);
+		Materiel.getClavier().setTrue(1);
 	}
 
 	@Override
@@ -38,7 +31,7 @@ public class DecListener implements MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		clavier.setFalse(1);
+		Materiel.getClavier().setFalse(1);
 	}
 
 	@Override

@@ -17,11 +17,11 @@ public class MoteurMetronomeControllerImpl implements MoteurMetronomeController 
 	private static int RANGE = 240;
 	private static int BASE = 60;
 	
-	public MoteurMetronomeControllerImpl(Materiel m, MoteurMetronome mm){
+	public MoteurMetronomeControllerImpl(MoteurMetronome mm){
 			this.mm = mm;
 			((MoteurMetronomeImpl)mm).addObserver(this);
 			this.setCommandes();
-			this.mmv = new AdapteurImpl(m, this);
+			this.mmv = new AdapteurImpl(this);
 	}
 	
 	public void setCommandes() {

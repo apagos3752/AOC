@@ -2,9 +2,15 @@ package view;
 
 public class ClavierImpl implements Clavier {
 
-	private Boolean[] tab = new Boolean[4];
+	private boolean[] tab;
+	
+	public ClavierImpl(){
+		tab = new boolean[4];
+		
+		for(int i=0; i<4; i++) tab[i] = new Boolean(false);
+	}
 	@Override
-	public Boolean touchePressée(int i) {
+	public Boolean touchePressee(int i) {
 		return tab[i];
 	}
 	@Override

@@ -3,6 +3,7 @@ package test;
 import model.MoteurMetronomeImpl;
 import utils.Horloge;
 import utils.HorlogeImpl;
+import view.ClavierImpl;
 import view.Materiel;
 import adapteur.AdapteurImpl;
 import adapteur.IAdapteur;
@@ -19,14 +20,14 @@ public class MainTest {
 		// TODO Auto-generated method stub
 
 		Horloge h = new HorlogeImpl();
-		Materiel m = new Materiel(h);
+		Materiel.setUp(h);
 		MoteurMetronomeImpl mmimpl = new MoteurMetronomeImpl();
 		
 		
 		mmimpl.setHorloge(h);
 		//mmimpl.setEtatMarche(true);
 		
-		MoteurMetronomeController mcci = new MoteurMetronomeControllerImpl(m,mmimpl);
+		MoteurMetronomeController mcci = new MoteurMetronomeControllerImpl(mmimpl);
 	}
 
 }

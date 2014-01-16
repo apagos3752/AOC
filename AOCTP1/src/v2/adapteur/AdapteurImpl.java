@@ -10,16 +10,14 @@ import controller.MoteurMetronomeController;
 public class AdapteurImpl implements IAdapteur{
 
 		private Commande commandeCheckMateriel;
-		private Materiel materiel;
 		private Horloge horloge;
 		private MoteurMetronomeController mmc;
 		private float lastTempo;
 		
-		public AdapteurImpl(Materiel materiel, MoteurMetronomeController mmc){
-			this.commandeCheckMateriel = new CommandeCheckMateriel();
-			this.materiel = materiel;
+		public AdapteurImpl(MoteurMetronomeController mmc){
+			this.commandeCheckMateriel = new CommandeCheckMateriel(this);
 			this.mmc = mmc;
-			this.horloge = this.materiel.getHorloge();
+			this.horloge = Materiel.getHorloge();
 			this.horloge.activerPeriodiquement(commandeCheckMateriel, 100);
 			this.lastTempo = 0;
 		}
@@ -27,7 +25,7 @@ public class AdapteurImpl implements IAdapteur{
 		@Override
 		public void checkMateriel() {
 			for(int i=0; i < 4; i++){
-				if(	materiel.getClavier().touchePressee(i) ){
+				if(	Materiel.getClavier().touchePressee(i) ){
 					switch(i){
 						case 0: mmc.incMesure();break;
 						case 1: mmc.decMesure();break;
@@ -37,7 +35,7 @@ public class AdapteurImpl implements IAdapteur{
 				}
 			}
 			
-			float currentTempo = materiel.getMolette().position();
+			float currentTempo = Materiel.getMolette().position();
 			
 			if(lastTempo != currentTempo){
 				mmc.setTempo(currentTempo);
@@ -50,29 +48,25 @@ public class AdapteurImpl implements IAdapteur{
 			this.horloge = h;
 		}
 		
-		@Override
-		public void setMateriel(Materiel m) {
-			this.materiel = m;
-		}
 
 		@Override
 		public void flashLED(int i) {
-			materiel.getAfficheur().allumerLED(i);
+			Materiel.getAfficheur().allumerLED(i);
 			horloge.activerApresDelai(new CommandeEteindreLED(i,this), 50);
 		}
 		
 		@Override
 		public void ledOFF(int i) {
-			materiel.getAfficheur().eteindreLED(i);			
+			Materiel.getAfficheur().eteindreLED(i);			
 		}
 
 		@Override
 		public void clic() {
-			materiel.getEmetteurSonore().emettreClic();
+			Materiel.getEmetteurSonore().emettreClic();
 		}
 
 		@Override
 		public void setText(String tempo) {
-			materiel.getAfficheur().afficherTempo(Integer.parseInt(tempo));
+			Materiel.getAfficheur().afficherTempo(Integer.parseInt(tempo));
 		}
 }

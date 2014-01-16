@@ -11,14 +11,14 @@ public class Materiel {
 	private static Afficheur afficheur;
 	private static MoteurMetronomeView mmv;
 	
-	public Materiel(Horloge h){
+	public static void setUp(Horloge h){
 		
-		this.mmv = new MoteurMetronomeViewImpl();
-		this.h = h;
-		this.clavier = new ClavierImpl();
-		this.molette = new MoletteImpl(mmv);
-		this.emetteur = new EmetteurSonoreImpl(mmv);
-		this.afficheur = new AfficheurImpl(mmv);
+		Materiel.mmv = new MoteurMetronomeViewImpl();
+		Materiel.h = h;
+		Materiel.clavier = new ClavierImpl();
+		Materiel.molette = new MoletteImpl(mmv);
+		Materiel.emetteur = new EmetteurSonoreImpl(mmv);
+		Materiel.afficheur = new AfficheurImpl(mmv);
 		
 	}
 	

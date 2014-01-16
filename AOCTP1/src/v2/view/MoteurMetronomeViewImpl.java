@@ -16,6 +16,11 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
 
 import controller.CommandeEteindreLED;
+import controller.DecListener;
+import controller.IncListener;
+import controller.StartListener;
+import controller.StopListener;
+//import controller.CommandeEteindreLEDV1;
 import utils.Horloge;
 import utils.HorlogeImpl;
 
@@ -64,9 +69,9 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 	}
 	
 	public void flashLED(int ledNumber){
-		JPanel led = ledList.get(ledNumber);
+		/*JPanel led = ledList.get(ledNumber);
 		led.setBackground(this.LED_ON);
-		h.activerApresDelai(new CommandeEteindreLED(ledNumber,this), 50);
+		h.activerApresDelai(new CommandeEteindreLEDV1(ledNumber,this), 50);*/
 	}
 	
 	public void LEDOff(int ledNumber){
@@ -149,6 +154,12 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		
 		this.add(southPanel,BorderLayout.SOUTH);
 		this.add(northPanel,BorderLayout.NORTH);
+		
+		this.setDecListener(new DecListener());
+		this.setIncListener(new IncListener());
+		this.setStartListener(new StartListener());
+		this.setStopListener(new StopListener());
+		this.setVisible(true);
 	}
 
 	public float getTempo() {

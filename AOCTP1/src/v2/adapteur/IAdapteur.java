@@ -9,8 +9,6 @@ public interface IAdapteur {
 
 	void setHorloge(Horloge h);
 
-	void setMateriel(Materiel m);
-
 	void flashLED(int i);
 
 	void clic();
