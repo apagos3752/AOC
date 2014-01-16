@@ -2,6 +2,7 @@ package utils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,10 @@ import controller.Commande;
 
 public class HorlogeImpl implements Horloge{
 	
+	private HashMap<Commande,Timer> hm;
+	
 	public HorlogeImpl() {
+		hm = new HashMap<Commande,Timer>();
 	}
 
 	@Override
@@ -25,6 +29,7 @@ public class HorlogeImpl implements Horloge{
 		
 		Timer t = new Timer((int) periodeActivation, taskPerformer);
 		t.start();
+		hm.put(cmd, t);
 		
 	}
 
@@ -40,6 +45,12 @@ public class HorlogeImpl implements Horloge{
 		Timer t = new Timer((int) delai, taskPerformer);
 		t.setRepeats(false);
 		t.start();
+	}
+
+	@Override
+	public void desactiverCommande(Commande cmd) {
+		hm.get(cmd).stop();
+		hm.remove(cmd);
 	}
 
 

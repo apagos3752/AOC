@@ -2,10 +2,17 @@ package controller;
 
 public class CommandeMarquerTemps implements Commande {
 
+	private MoteurMetronomeController mmc;
+
+	public CommandeMarquerTemps(MoteurMetronomeController mmc){
+		
+		this.mmc = mmc;
+		
+	}
+	
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-		System.out.println("Execute CommandeMarquerTemps");
+		mmc.marquerTemps();
 	}
 
 }

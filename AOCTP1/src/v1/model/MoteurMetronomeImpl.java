@@ -1,10 +1,12 @@
 package model;
 
+import java.awt.event.MouseListener;
 import java.util.Hashtable;
 import java.util.Observable;
 
 import utils.Horloge;
 import controller.Commande;
+import controller.CommandeTicTac;
 
 public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 	private double tempo;
@@ -15,14 +17,15 @@ public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 	private Commande commandeMarquerMesure;
 	private Commande commandeMarquerTemps;
 	private Commande commandeTicTac;
-	
-	public MoteurMetronomeImpl(){
+
+	public MoteurMetronomeImpl() {
 		this.tempo = 60.0;
 		this.mesure = 4;
-		this.tempoLaps = 0;
+		this.tempoLaps = mesure - 1;
 		this.etat = false;
+		this.setCommandeTicTac(new CommandeTicTac(this));
 	}
-	
+
 	@Override
 	public double getTempo() {
 		return tempo;
@@ -35,67 +38,57 @@ public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 
 	@Override
 	public void setTempo(float tempo) {
-		if (tempo>0) this.tempo = tempo;
+		if (tempo > 0) {
+			this.tempo = tempo;
+			this.setChanged();
+			if (etat) {
+				horloge.desactiverCommande(commandeTicTac);
+				double top = 60 / tempo;
+				horloge.activerPeriodiquement(commandeTicTac, top * 1000);
+			}
+			this.notifyObservers(tempo);
+		}
 	}
 
 	@Override
-	public void setEtatMarche(boolean etat) {
-		if(etat){
-			double top = 60/tempo;
-			horloge.activerPeriodiquement(commandeTicTac, top);	
-		}
-		else{
-			//horloge.desactiverCommande(commandeTicTac);
-		}
+	public synchronized void setEtatMarche(boolean etat) {
+		if (etat && this.etat != etat) {
+			double top = 60 / tempo;
+			horloge.activerPeriodiquement(commandeTicTac, top * 1000);
 
+		} else if (this.etat != etat) {
+			horloge.desactiverCommande(commandeTicTac);
+		}
 		this.etat = etat;
 	}
 
 	@Override
-	public void setCommandeMarquerMesure(Commande cmd){
+	public void setCommandeMarquerMesure(Commande cmd) {
 		commandeMarquerMesure = cmd;
 	}
-	
+
 	@Override
-	public void setCommandeMarquerTemps(Commande cmd){
+	public void setCommandeMarquerTemps(Commande cmd) {
 		commandeMarquerTemps = cmd;
 	}
-	
+
 	@Override
-	public void setCommandeTicTac(Commande cmd){
+	public void setCommandeTicTac(Commande cmd) {
 		commandeTicTac = cmd;
 	}
-	
-	public void setHorloge(Horloge h){
+
+	public void setHorloge(Horloge h) {
 		horloge = h;
 	}
-	
-	public void tictac(){
+
+	public void tictac() {
 		commandeMarquerTemps.execute();
 		tempoLaps++;
-		
-		if(tempoLaps == mesure){
+
+		if (tempoLaps == mesure) {
 			commandeMarquerMesure.execute();
 			tempoLaps = 0;
 		}
-	}	
-
-	@Override
-	public void setListeners() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void marquerTemps() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void marquerMesure() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -106,7 +99,10 @@ public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 
 	@Override
 	public void setMesure(int mesure) {
-		if (mesure>0) this.mesure = mesure;		
+		if (mesure > 0) {
+			this.mesure = mesure;
+			this.tempoLaps = mesure - 1;
+		}
 	}
 
 }

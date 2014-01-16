@@ -3,21 +3,27 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.SwingConstants;
+import javax.swing.event.ChangeListener;
+
+import controller.CommandeEteindreLED;
+import utils.Horloge;
+import utils.HorlogeImpl;
 
 public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeView {
 
-	Integer INITMESURE = new Integer(4);
-	Color LED_ON = Color.decode("#ff0000");
-	Color LED_OFF = Color.decode("#a90b0b");
-	String MESUREPREFIX = "1|";
-	int ACCURACY = 1000;
+	Horloge h;
+	static Color LED_ON = Color.decode("#ff0000");
+	static Color LED_OFF = Color.decode("#a90b0b");
+	int ACCURACY = 180;
 	
 	JButton inc;
 	JButton dec;
@@ -36,8 +42,8 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		
 	}
 	
-	public void setMoletteListener(MouseListener ml){
-		molette.addMouseListener(ml);
+	public void setMoletteListener(ChangeListener cl){
+		molette.addChangeListener(cl);
 	}
 	
 	public void setIncListener(MouseListener ml){
@@ -56,9 +62,17 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		stop.addMouseListener(ml);
 	}
 	
-	public void flasherLED(int ledNumber){
+	public void flashLED(int ledNumber){
 		JPanel led = ledList.get(ledNumber);
 		led.setBackground(this.LED_ON);
+		h.activerApresDelai(new CommandeEteindreLED(ledNumber,this), 50);
+	}
+	
+	public void LEDOff(int ledNumber){
+		
+		JPanel led = ledList.get(ledNumber);
+		led.setBackground(this.LED_OFF);
+		
 	}
 	
 	public void setUp(){
@@ -78,7 +92,7 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		mesure = new JPanel();
 		mesure.setSize(100, 100);
 		mesure.setPreferredSize(mesure.getSize());
-		mesureTxt = new JLabel("1|"+this.INITMESURE.toString());
+		mesureTxt = new JLabel("60");
 		mesureTxt.setSize(100,100);
 		mesureTxt.setPreferredSize(mesureTxt.getSize());
 		mesureTxtFont = new Font("", 1, 60);
@@ -127,45 +141,21 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		this.add(southPanel,BorderLayout.SOUTH);
 		this.add(northPanel,BorderLayout.NORTH);
 	}
-	
-	@Override
-	public void marquerTemps() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setIncListener() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setStartListener() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setStopListener() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setMoletteListener() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setDecListener() {
-		// TODO Auto-generated method stub
-
-	}
 
 	public float getTempo() {
-		return molette.getValue()/this.ACCURACY;
+		return (float)molette.getValue()/this.ACCURACY;
+	}
+
+	public void setHorloge(Horloge h) {
+		
+		this.h = h;
+		
+	}
+	
+	public void setText(String txt){
+	
+		this.mesureTxt.setText(txt);
+		
 	}
 
 }
