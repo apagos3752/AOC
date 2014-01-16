@@ -25,4 +25,6 @@ public interface MoteurMetronomeView{
 	
 	public void setText(String txt);
 	
+	public void clic();
+	
 }

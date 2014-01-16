@@ -158,4 +158,11 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		
 	}
 
+	
+	public void clic(){
+	
+		Toolkit.getDefaultToolkit().beep();
+		
+	}
+	
 }
