@@ -2,6 +2,10 @@ package v2.adapteur;
 
 import v2.utils.Horloge;
 
+
+/**
+ *  Interface à implementer pour creer l'adapteur
+ */
 public interface IAdapteur {
 
 	void checkMateriel();

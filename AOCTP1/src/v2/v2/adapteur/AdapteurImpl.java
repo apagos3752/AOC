@@ -7,6 +7,9 @@ import v2.controller.MoteurMetronomeController;
 import v2.utils.Horloge;
 import v2.view.Materiel;
 
+/**
+ *  Classe adaptant l'interface au controlleur
+ */
 public class AdapteurImpl implements IAdapteur{
 
 		private Commande commandeCheckMateriel;
@@ -22,6 +25,10 @@ public class AdapteurImpl implements IAdapteur{
 			this.lastTempo = 0;
 		}
 		
+		/**
+		 *  Methode s'occupant de regarder si l'état de l'interface à changé
+		 *  
+		 */
 		@Override
 		public void checkMateriel() {
 			for(int i=0; i < 4; i++){
@@ -48,23 +55,41 @@ public class AdapteurImpl implements IAdapteur{
 			this.horloge = h;
 		}
 		
-
+		
+		/**
+		 *  Methode détaillant les différentes actions à effectuer pour faire flasher une LED
+		 *  @param i Le numéro de la LED à flasher
+		 */
 		@Override
 		public void flashLED(int i) {
 			Materiel.getAfficheur().allumerLED(i);
 			horloge.activerApresDelai(new CommandeEteindreLED(i,this), 50);
 		}
-		
+
+		/**
+		 *  Methode détaillant les différentes actions à effectuer pour faire éteindre une LED
+		 *  @param i Le numéro de la LED à éteindre
+		 */
 		@Override
 		public void ledOFF(int i) {
 			Materiel.getAfficheur().eteindreLED(i);			
 		}
 
+
+		/**
+		 *  Methode détaillant les différentes actions à effectuer pour faire un clic sonore
+		 *  
+		 */
 		@Override
 		public void clic() {
 			Materiel.getEmetteurSonore().emettreClic();
 		}
 
+		
+		/**
+		 *  Methode modifiant l'affichage de l'afficheur de la vue
+		 *  @param tempo le text à afficher
+		 */
 		@Override
 		public void setText(String tempo) {
 			Materiel.getAfficheur().afficherTempo(Integer.parseInt(tempo));
