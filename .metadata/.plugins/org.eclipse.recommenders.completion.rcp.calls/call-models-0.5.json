@@ -8,5 +8,16 @@
     "coordinate": "jre:jre:zip:call:1.0.0",
     "location": "C:\\Program Files\\Java\\jre7\\lib\\rt.jar",
     "status": "RESOLVED"
+  },
+  "/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/rt.jar",
+    "status": "RESOLVED",
+    "error": "No class path info available for \u0027/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/rt.jar\u0027. Skipped."
+  },
+  "/Users/Florian/Documents/Fac/M2/workspace/AOCFinal/AOCTP1/src/v2": {
+    "location": "/Users/Florian/Documents/Fac/M2/workspace/AOCFinal/AOCTP1/src/v2",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027/Users/Florian/Documents/Fac/M2/workspace/AOCFinal/AOCTP1/src/v2\u0027. Skipped."
   }
 }

@@ -8,4 +8,11 @@
 <fullyQualifiedTypeName name="javax.swing.JSlider"/>
 <fullyQualifiedTypeName name="java.awt.GridBagConstraints"/>
 <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+<fullyQualifiedTypeName name="controller.CommandeCheckMateriel"/>
+<fullyQualifiedTypeName name="utils.Horloge"/>
+<fullyQualifiedTypeName name="controller.CommandeEteindreLED"/>
+<fullyQualifiedTypeName name="adapteur.IAdapteur"/>
+<fullyQualifiedTypeName name="controller.MoteurMetronomeController"/>
+<fullyQualifiedTypeName name="adapteur.AdapteurImpl"/>
+<fullyQualifiedTypeName name="view.Materiel"/>
 </qualifiedTypeNameHistroy>
