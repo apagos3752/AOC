@@ -18,13 +18,34 @@ import javax.swing.event.ChangeListener;
 import v1.controller.CommandeEteindreLED;
 import v1.utils.Horloge;
 
+/**
+ *  Cette classe est la vue de l'application
+ */
+ 
 public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeView {
 
+	/**
+	 *  Horloge interne de la vue
+	 */
 	Horloge h;
+	
+	/**
+	 *  Couleur représentant une LED allumée
+	 */
 	static Color LED_ON = Color.decode("#ff0000");
+	
+	/**
+	 *  Couleur représentant une LED eteinte
+	 */
 	static Color LED_OFF = Color.decode("#a90b0b");
+	
+	/**
+	 *  Defini la précision du slider (nombre de valeur)
+	 */
 	int ACCURACY = 180;
 	
+	
+	//Composant graphiques
 	JButton inc;
 	JButton dec;
 	JButton start;
@@ -42,32 +63,55 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		
 	}
 	
+	/**
+	 *  Methode à utiliser pour injecter les listeners des différents bouttons
+	 */
 	public void setMoletteListener(ChangeListener cl){
 		molette.addChangeListener(cl);
 	}
 	
+	/**
+	 *  Methode à utiliser pour injecter les listeners des différents bouttons
+	 */
 	public void setIncListener(MouseListener ml){
 		inc.addMouseListener(ml);
 	}
 	
+	/**
+	 *  Methode à utiliser pour injecter les listeners des différents bouttons
+	 */
 	public void setDecListener(MouseListener ml){
 		dec.addMouseListener(ml);
 	}
 	
+	/**
+	 *  Methode à utiliser pour injecter les listeners des différents bouttons
+	 */
 	public void setStartListener(MouseListener ml){
 		start.addMouseListener(ml);
 	}
 	
+	/**
+	 *  Methode à utiliser pour injecter les listeners des différents bouttons
+	 */
 	public void setStopListener(MouseListener ml){
 		stop.addMouseListener(ml);
 	}
 	
+	/**
+	 *  Methode détaillant les différentes actions à effectuer pour faire flasher une LED
+	 *  @param ledNumber Le numéro de la LED à flasher
+	 */
 	public void flashLED(int ledNumber){
 		JPanel led = ledList.get(ledNumber);
 		led.setBackground(this.LED_ON);
 		h.activerApresDelai(new CommandeEteindreLED(ledNumber,this), 50);
 	}
 	
+	/**
+	 *  Methode détaillant les différentes actions à effectuer pour faire éteindre une LED
+	 *  @param ledNumber Le numéro de la LED à éteindre
+	 */
 	public void LEDOff(int ledNumber){
 		
 		JPanel led = ledList.get(ledNumber);
@@ -75,6 +119,9 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		
 	}
 	
+	/**
+	 *  Methode de mise en place de la vue
+	 */
 	public void setUp(){
 		
 		this.setSize(350, 240);
@@ -142,23 +189,38 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		this.add(northPanel,BorderLayout.NORTH);
 	}
 
+	/**
+	 *  Retourne la valeur de la molette
+	 *  @return la valeur de la molette
+	 */
 	public float getTempo() {
 		return (float)molette.getValue()/this.ACCURACY;
 	}
 
+	/**
+	 *  Met en place l'horloge interne de la vue
+	 *  @param h l'horloge à utiliser
+	 */
 	public void setHorloge(Horloge h) {
 		
 		this.h = h;
 		
 	}
 	
+	/**
+	 *  Methode modifiant l'affichage de l'afficheur de la vue
+	 *  @param txt le text à afficher
+	 */
 	public void setText(String txt){
 	
 		this.mesureTxt.setText(txt);
 		
 	}
 
-	
+	/**
+	 *  Methode détaillant les différentes actions à effectuer pour faire un clic sonore
+	 *  
+	 */
 	public void clic(){
 	
 		Toolkit.getDefaultToolkit().beep();

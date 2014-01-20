@@ -3,6 +3,10 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
+
+/**
+ *  C'est l'interface à implementer pour créer la vue de l'application
+ */
 public interface MoteurMetronomeView{
 	
 	public void setIncListener(MouseListener ml);
