@@ -2,6 +2,9 @@ package v1.model;
 
 import v1.controller.Commande;
 
+/**
+ *  C'est l'interface à implementer pour créer le modèle de l'application
+ */
 public interface MoteurMetronome {
 
 	public double getTempo();
