@@ -217,10 +217,10 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		
 	}
 
-	/**
-	 *  Methode détaillant les différentes actions à effectuer pour faire un clic sonore
-	 *  
-	 */
+		/**
+		 *  Methode détaillant les différentes actions à effectuer pour faire un clic sonore
+		 *  
+		 */
 	public void clic(){
 	
 		Toolkit.getDefaultToolkit().beep();
