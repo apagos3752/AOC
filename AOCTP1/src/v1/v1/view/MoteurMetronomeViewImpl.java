@@ -228,16 +228,14 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 		//Si la commande n'a jamais été lancée
 		if(cmdRestore == null){
 			cmdRestore = new CommandeRestoreTxt(this);
-			h.activerApresDelai(cmdRestore, 1500);
+			h.activerApresDelai(cmdRestore, 1000);
 		//Si le timer est déjà en cours d'exécution on redémarre le timer
 		}else if(h.isRunning(cmdRestore)){
 			h.restart(cmdRestore);
 		//Sinon, relancer la commande
 		}else{
-			h.activerApresDelai(cmdRestore, 1500);
+			h.activerApresDelai(cmdRestore, 1000);
 		}
-		System.out.println(h.isRunning(cmdRestore));
-
 		this.mesureTxt.setText(txt);		
 
 	}

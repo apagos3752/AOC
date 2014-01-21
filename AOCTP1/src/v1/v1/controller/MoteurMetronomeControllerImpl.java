@@ -127,7 +127,6 @@ public class MoteurMetronomeControllerImpl implements MoteurMetronomeController 
 	public void update(Observable arg0, Object arg1) {
 		String mesure = "mesure";
 		String tempo = "tempo";
-		System.out.println("bwah");
 		if (arg1 == tempo){
 			this.updateTempo((MoteurMetronome) arg0);
 		}else if (arg1 == mesure) {
