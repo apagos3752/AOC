@@ -11,5 +11,6 @@ public interface Horloge {
 	public void activerPeriodiquement(Commande cmd, double periodeActivation);
 	public void activerApresDelai(Commande cmd, double delai);
 	public void desactiverCommande(Commande cmd);
-
+	public boolean isRunning(Commande cmd);
+	public void restart(Commande cmd);
 }

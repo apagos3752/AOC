@@ -16,7 +16,9 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
 
 import v1.controller.CommandeEteindreLED;
+import v1.controller.CommandeRestoreTxt;
 import v1.utils.Horloge;
+import v2.view.Materiel;
 
 /**
  *  Cette classe est la vue de l'application
@@ -44,6 +46,7 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 	 */
 	int ACCURACY = 180;
 	
+	CommandeRestoreTxt cmdRestore;
 	
 	//Composant graphiques
 	JButton inc;
@@ -56,6 +59,7 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 	JLabel mesureTxt;
 	Font mesureTxtFont;
 	ArrayList<JPanel> ledList;
+	String tempoTxt = "60";
 	
 	public MoteurMetronomeViewImpl(){
 		
@@ -212,15 +216,36 @@ public class MoteurMetronomeViewImpl extends JFrame implements MoteurMetronomeVi
 	 *  @param txt le text Ã  afficher
 	 */
 	public void setText(String txt){
+		this.tempoTxt = txt;
+		this.mesureTxt.setText(this.tempoTxt);
+	}
 	
-		this.mesureTxt.setText(txt);
-		
+	public void restoreTempoTxt(){
+		this.mesureTxt.setText(this.tempoTxt);
+	}
+	
+	public void flasherText(String txt){
+		//Si la commande n'a jamais été lancée
+		if(cmdRestore == null){
+			cmdRestore = new CommandeRestoreTxt(this);
+			h.activerApresDelai(cmdRestore, 1500);
+		//Si le timer est déjà en cours d'exécution on redémarre le timer
+		}else if(h.isRunning(cmdRestore)){
+			h.restart(cmdRestore);
+		//Sinon, relancer la commande
+		}else{
+			h.activerApresDelai(cmdRestore, 1500);
+		}
+		System.out.println(h.isRunning(cmdRestore));
+
+		this.mesureTxt.setText(txt);		
+
 	}
 
-		/**
-		 *  Methode dÃ©taillant les diffÃ©rentes actions Ã  effectuer pour faire un clic sonore
-		 *  
-		 */
+	/**
+	 *  Methode dÃ©taillant les diffÃ©rentes actions Ã  effectuer pour faire un clic sonore
+	 *  
+	 */
 	public void clic(){
 	
 		Toolkit.getDefaultToolkit().beep();

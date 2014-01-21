@@ -29,6 +29,10 @@ public interface MoteurMetronomeView{
 	
 	public void setText(String txt);
 	
+	public void flasherText(String txt);
+	
+	public void restoreTempoTxt();
+	
 	public void clic();
 	
 }

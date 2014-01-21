@@ -125,8 +125,24 @@ public class MoteurMetronomeControllerImpl implements MoteurMetronomeController 
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		Integer newText = new Integer((int)((MoteurMetronome) arg0).getTempo());
-		mmv.setText(newText.toString());	
+		String mesure = "mesure";
+		String tempo = "tempo";
+		System.out.println("bwah");
+		if (arg1 == tempo){
+			this.updateTempo((MoteurMetronome) arg0);
+		}else if (arg1 == mesure) {
+			this.updateMesure((MoteurMetronome) arg0);
+		}
+	}
+	
+	public void updateTempo(MoteurMetronome mm){
+		Integer newText = new Integer((int)(mm.getTempo()));
+		mmv.setText(newText.toString());
+	}
+	
+	public void updateMesure(MoteurMetronome mm){
+		Integer tempText = new Integer((int)(mm.getMesure()));
+		mmv.flasherText(tempText.toString());
 	}
 
 }

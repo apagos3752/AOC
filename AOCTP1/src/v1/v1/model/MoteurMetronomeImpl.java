@@ -67,6 +67,7 @@ public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 	 *  @return Valeur actuelle de la mesure
 	 */
 	@Override
+	
 	public int getTempoParMesure() {
 		return mesure;
 	}
@@ -86,7 +87,7 @@ public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 				double top = 60 / tempo;
 				horloge.activerPeriodiquement(commandeTicTac, top * 1000);
 			}
-			this.notifyObservers(tempo);
+			this.notifyObservers("tempo");
 		}
 	}
 
@@ -173,10 +174,12 @@ public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 	 */
 	@Override
 	public void setMesure(int mesure) {
-		if (mesure > 0) {
+		if (mesure > 1) {
 			this.mesure = mesure;
 			this.tempoLaps = mesure - 1;
+			this.setChanged();
 		}
+		this.notifyObservers("mesure");
 	}
 
 

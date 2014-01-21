@@ -57,6 +57,7 @@ public class HorlogeImpl implements Horloge{
 		Timer t = new Timer((int) delai, taskPerformer);
 		t.setRepeats(false);
 		t.start();
+		hm.put(cmd,t);
 	}
 
 	/**
@@ -69,5 +70,13 @@ public class HorlogeImpl implements Horloge{
 		hm.remove(cmd);
 	}
 
+	
+	public boolean isRunning(Commande cmd){
+		return hm.get(cmd).isRunning();
+	}
+	
+	public void restart(Commande cmd){
+		hm.get(cmd).restart();
+	}
 
 }
