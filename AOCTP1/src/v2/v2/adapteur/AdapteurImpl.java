@@ -16,6 +16,10 @@ public class AdapteurImpl implements IAdapteur{
 		private Horloge horloge;
 		private MoteurMetronomeController mmc;
 		private float lastTempo;
+		private boolean prevEtatInc;
+		private boolean prevEtatDec;
+		private boolean prevEtatStart;
+		private boolean prevEtatStop;
 		
 		public AdapteurImpl(MoteurMetronomeController mmc){
 			this.commandeCheckMateriel = new CommandeCheckMateriel(this);
@@ -23,6 +27,10 @@ public class AdapteurImpl implements IAdapteur{
 			this.horloge = Materiel.getHorloge();
 			this.horloge.activerPeriodiquement(commandeCheckMateriel, 10);
 			this.lastTempo = 0;
+			this.prevEtatDec = false;
+			this.prevEtatInc = false;
+			this.prevEtatStart = false;
+			this.prevEtatStop = false;
 		}
 		
 		/**
@@ -32,15 +40,22 @@ public class AdapteurImpl implements IAdapteur{
 		@Override
 		public void checkMateriel() {
 			for(int i=0; i < 4; i++){
-				if(	Materiel.getClavier().touchePressee(i) ){
-					switch(i){
-						case 0: mmc.incMesure();break;
-						case 1: mmc.decMesure();break;
-						case 2: mmc.start();break;
-						case 3: mmc.stop();break;
-					}
+				switch(i){
+					case 0: if(!this.prevEtatInc && Materiel.getClavier().touchePressee(i)) mmc.incMesure();
+							this.prevEtatInc = Materiel.getClavier().touchePressee(i);
+							break;
+					case 1: if(!this.prevEtatDec && Materiel.getClavier().touchePressee(i)) mmc.decMesure();
+							this.prevEtatDec = Materiel.getClavier().touchePressee(i);
+							break;
+					case 2: if(!this.prevEtatStart && Materiel.getClavier().touchePressee(i)) mmc.start();
+							this.prevEtatStart = Materiel.getClavier().touchePressee(i);
+							break;
+					case 3: if(!this.prevEtatStop && Materiel.getClavier().touchePressee(i)) mmc.stop(); 
+							this.prevEtatStop = Materiel.getClavier().touchePressee(i);
+							break;
 				}
 			}
+			
 			
 			float currentTempo = Materiel.getMolette().position();
 			

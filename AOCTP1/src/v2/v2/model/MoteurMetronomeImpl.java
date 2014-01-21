@@ -51,10 +51,12 @@ public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 	@Override
 	public synchronized void setEtatMarche(boolean etat) {
 		if (etat && this.etat != etat) {
+			System.out.println("Demarrage du métronome");
 			double top = 60 / tempo;
 			horloge.activerPeriodiquement(commandeTicTac, top * 1000);
 
 		} else if (this.etat != etat) {
+			System.out.println("Extinction du métronome");
 			horloge.desactiverCommande(commandeTicTac);
 		}
 		this.etat = etat;
@@ -97,7 +99,9 @@ public class MoteurMetronomeImpl extends Observable implements MoteurMetronome {
 
 	@Override
 	public void setMesure(int mesure) {
-		if (mesure > 0) {
+		
+		if (mesure > 1) {
+			System.out.println("Nouvelle mesure : "+mesure);
 			this.mesure = mesure;
 			this.tempoLaps = mesure - 1;
 		}

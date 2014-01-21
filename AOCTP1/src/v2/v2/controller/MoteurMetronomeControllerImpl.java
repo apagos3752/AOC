@@ -55,13 +55,11 @@ public class MoteurMetronomeControllerImpl implements MoteurMetronomeController 
 
 	@Override
 	public void start() {
-		System.out.println("Set Marche");
 		mm.setEtatMarche(true);
 	}
 
 	@Override
 	public void stop() {
-		System.out.println("Set Stop");
 		mm.setEtatMarche(false);		
 	}
 
